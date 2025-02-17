@@ -5,8 +5,7 @@ const video = document.querySelector('.player__video');
   const forward = document.querySelector('.forward');
   const speed = document.querySelector('.speed');
   const speedBar = document.querySelector('.speed-bar');
-  const inputs = document.querySelectorAll('.controls input');
-
+  
   function togglePlay() {
     if (video.paused) {
       video.play();
@@ -35,16 +34,9 @@ const video = document.querySelector('.player__video');
     speedBar.textContent = `${playbackRate.toFixed(1)}×`;
   }
 
-  function handleUpdate() {
-    const suffix = this.dataset.sizing || '';
-    document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
-  }
-
   toggle.addEventListener('click', togglePlay);
   video.addEventListener('click', togglePlay);
   volume.addEventListener('input', updateVolume);
   rewind.addEventListener('click', () => skip(-10));
   forward.addEventListener('click', () => skip(25));
   speed.addEventListener('mousemove', handleSpeedChange);
-  inputs.forEach(input => input.addEventListener('change', handleUpdate));
-  inputs.forEach(input => input.addEventListener('mousemove', handleUpdate));
